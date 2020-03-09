@@ -1,23 +1,70 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, IonApp } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { HttpClientModule, HttpClient, HttpRequest } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { APP_BASE_HREF } from '@angular/common';
+
+
+
+
+
+import { RequisitosProvider } from './services/requisitos/requisitos';
+import { UbicacionProvider } from './services/ubicacion/ubicacion';
+
+import { Storage, IonicStorageModule } from '@ionic/storage';
+import { AuthProvider } from './services/auth/auth';
+import { JwtHelper, AuthConfig, AuthHttp } from "angular2-jwt";
+import { CustomFormsModule } from 'ng2-validation';
+import { AvisosProvider } from './services/avisos/avisos';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
+export function authHttpServiceFactory(http: HttpClient, options: HttpRequest<any>, storage: Storage) {
+  const authConfig = new AuthConfig({
+    tokenGetter: (() => storage.get('jwt')),
+  });
+  return new AuthHttp(authConfig, http, options);
+}
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports:
+    [
+      BrowserModule,
+      CustomFormsModule,
+      IonicModule.forRoot(),
+      IonicStorageModule.forRoot(),
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule],
+
+
   providers: [
+    ErrorHandler,
     StatusBar,
+    RequisitosProvider,
+    UbicacionProvider,
+    AvisosProvider,
+    AuthProvider,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    JwtHelper,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [HttpClient, HttpRequest, Storage],
+      useClass: IonicRouteStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

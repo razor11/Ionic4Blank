@@ -1,5 +1,79 @@
 {
   "name": "myapp",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api/auth",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/auth"
+    },
+    {
+      "path": "/api/SolvenciaRtnRequest",
+      "proxyUrl": "http://172.16.25.33:8085/WebService/json/oneway/SolvenciaRtnRequest"
+    },
+    {
+      "path": "/api/ObtenerValidacion",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Validador/ObtenerValidacion"
+    },
+    {
+      "path": "/api/ObtenerValidacionDummy",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Validador/ObtenerValidacion"
+    },
+    {
+      "path": "/api/ObtenerProceso",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/WorkFlow/ObtenerProceso"
+    },
+    {
+      "path": "/api/Tramites/ObtenerCategorias",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Tramites/ObtenerCategorias"
+    },
+    {
+      "path": "/api/Tramites/ObtenerSubCategorias/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Tramites/ObtenerSubCategorias/"
+    },
+    {
+      "path": "/api/Tramites/ObtenerTramites/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Tramites/ObtenerTramites/"
+    },
+    {
+      "path": "/api/Tramites/ObtenerRequisitosTramite/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Tramites/ObtenerRequisitosTramite/"
+    },
+    {
+      "path": "/api/ObtenerOficinasAtencion/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Administracion/ObtenerOficinasAtencion/"
+    },
+    {
+      "path": "/api/ObtenerOficinasAtencionDepartamento/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Administracion/ObtenerOficinasAtencionDepartamento/"
+    },
+    {
+      "path": "/api/ObtenerTodosLosDepartamentosOficinasDisponibles/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/Administracion/ObtenerTodosLosDepartamentosOficinasDisponibles/"
+    },
+    {
+      "path": "/api/TramitesVentanillas/ObtenerCategorias",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/TramitesVentanillas/ObtenerCategorias"
+    },
+    {
+      "path": "/api/TramitesVentanillas/ObtenerSubCategorias/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/TramitesVentanillas/ObtenerSubCategorias/"
+    },
+    {
+      "path": "/api/TramitesVentanillas/ObtenerTramites/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/TramitesVentanillas/ObtenerTramites/"
+    },
+    {
+      "path": "/api/TramitesVentanillas/ObtenerRequisitosTramite/",
+      "proxyUrl": "http://app.sar.gob.hn/ClienteMovilRestFul/api/TramitesVentanillas/ObtenerRequisitosTramite/"
+    },
+    {
+      "path": "/onesignal/api",
+      "proxyUrl": "https://onesignal.com/api/v1/notifications?app_id=cf0d0456-8468-48e8-854e-efe27117fbed&limit=2"
+    }
+  ],
+  "pro_id": "a8b021b2",
+  "id": "a8b021b2"
 }
