@@ -20,7 +20,7 @@ import { UbicacionProvider } from './services/ubicacion/ubicacion';
 
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { AuthProvider } from './services/auth/auth';
-import { JwtHelper, AuthConfig, AuthHttp } from "angular2-jwt";
+
 import { CustomFormsModule } from 'ng2-validation';
 import { AvisosProvider } from './services/avisos/avisos';
 
@@ -28,12 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
-export function authHttpServiceFactory(http: HttpClient, options: HttpRequest<any>, storage: Storage) {
-  const authConfig = new AuthConfig({
-    tokenGetter: (() => storage.get('jwt')),
-  });
-  return new AuthHttp(authConfig, http, options);
-}
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -69,14 +63,7 @@ export function tokenGetter() {
     UbicacionProvider,
     AvisosProvider,
     AuthProvider,
-    SplashScreen,
-    JwtHelper,
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [HttpClient, HttpRequest, Storage],
-      useClass: IonicRouteStrategy
-    }
+    SplashScreen
   ],
   bootstrap: [AppComponent]
 })
