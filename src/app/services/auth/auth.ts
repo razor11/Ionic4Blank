@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import "rxjs/add/operator/map";
 import {ReplaySubject, Observable} from "rxjs";
 import {Storage} from "@ionic/storage";
-import {JwtHelper} from "angular2-jwt";
+import {JwtHelperService} from "@auth0/angular-jwt"
 import {SERVER_URL, S, USER_HASH, PASSWORD_HASH} from "../../../config";
 
 declare var CryptoJS;
@@ -26,7 +26,7 @@ export class AuthProvider {
   constructor(
     private readonly http: HttpClient,
     private readonly storage: Storage,
-    private readonly jwtHelper: JwtHelper,
+    private readonly jwtHelper: JwtHelperService,
     public platform: Platform) {
     console.log('Hello AuthProvider Provider');
   }

@@ -4,6 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy, IonApp } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { HttpClientModule, HttpClient, HttpRequest } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -34,6 +35,11 @@ export function authHttpServiceFactory(http: HttpClient, options: HttpRequest<an
   return new AuthHttp(authConfig, http, options);
 }
 
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
+ 
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +52,13 @@ export function authHttpServiceFactory(http: HttpClient, options: HttpRequest<an
       IonicStorageModule.forRoot(),
       AppRoutingModule,
       HttpClientModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          whitelistedDomains: ["localhost"],
+          blacklistedRoutes: ["localhost/examplebadroute/"]
+        }
+      }),
       BrowserAnimationsModule],
 
 
